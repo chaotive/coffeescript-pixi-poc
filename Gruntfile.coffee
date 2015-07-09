@@ -4,12 +4,6 @@ module.exports = (grunt) ->
   grunt.initConfig(
     # Metadata	
     pkg: grunt.file.readJSON('package.json')
-    uglify:
-      options:
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'		
-      build:
-        src: 'src/<%= pkg.name %>.js'
-        dest: 'build/<%= pkg.name %>.min.js'
     coffee:
       compileJoined:
         options:
@@ -22,7 +16,6 @@ module.exports = (grunt) ->
   )
 	
   # Load the plugin that provides the "uglify" and other tasks.
-  # grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
 
   # Default task(s).
