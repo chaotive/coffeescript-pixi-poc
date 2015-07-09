@@ -1,11 +1,8 @@
 {
-  "name": "derideal-card-game",
+  "name": "basic-coffeescript-project",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-coffee": "^0.13.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "^0.9.1"
+    "grunt-contrib-coffee": "^0.13.0"
   }
 }
