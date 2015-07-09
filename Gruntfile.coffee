@@ -12,12 +12,12 @@ module.exports = (grunt) ->
         dest: 'build/<%= pkg.name %>.min.js'
     coffee:
       compileJoined:
-        #options:
-          # join: true        
+        options:
+          join: true
         files:          
           'build/<%= pkg.name %>.js': [
-            'src/*.coffee'
-            'src/pck/*.coffee'
+            'src/coffee/*.coffee'
+            'src/coffee/package/*.coffee'
           ] # concat then compile into single file
   )
 	
