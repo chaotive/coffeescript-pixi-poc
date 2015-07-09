@@ -1,1 +1,2 @@
 whatever = true
+forever = "never"
