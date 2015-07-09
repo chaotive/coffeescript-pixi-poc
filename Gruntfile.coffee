@@ -21,8 +21,8 @@ module.exports = (grunt) ->
           ] # concat then compile into single file
   )
 	
-  # Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks 'grunt-contrib-uglify'
+  # Load the plugin that provides the "uglify" and other tasks.
+  # grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
 
   # Default task(s).
