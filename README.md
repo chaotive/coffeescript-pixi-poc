@@ -1,5 +1,5 @@
 # README #
 
-### basic-coffeescript-project ###
+### coffeescript-pixi-poc ###
 
-This is a basic cofeescript project template to use with Grunt. Would like to eventually make it a full fledged template to use with grunt scaffolding tools, but it works as is for now.
+This is a Proof of Concept project to use Pixi.js functionality from Coffeescript code. The project should be built using Grunt.

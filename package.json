@@ -1,5 +1,5 @@
 {
-  "name": "basic-coffeescript-project",
+  "name": "coffeescript-pixi-poc",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "^0.4.5",
