@@ -1,0 +1,14 @@
+{
+  "options": {},
+  "jquery": {
+    "dir": "lib/jquery",
+    "files": [
+      {
+        "jquery-1.10.2.js": "http://code.jquery.com/jquery-1.10.2.js"
+      },
+      {
+        "jquery-2.0.3.js": "http://code.jquery.com/jquery-2.0.3.js"
+      }
+    ]
+  }
+}
