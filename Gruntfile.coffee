@@ -14,18 +14,27 @@ module.exports = (grunt) ->
             'src/coffee/**/*.coffee'
             # 'src/coffee/package/*.coffee'
           ] # concat then compile into single file
+    json:
+      settings:
+        options:
+          namespace: 'myjson'
+          processName: (filename) ->
+            filename.toLowerCase()
+        src: ['src/*.json']
+        dest: 'build/settings.js'
     copy:
+      statics: files:
+          'build/index.html' : ['src/index.html']
       html: files: [
           expand: true
-          cwd: 'src/html/'
-          src: ['**/*.html']
+          cwd: 'src/'
+          src: ['html/**/*.html']
           dest: 'build/'
         ]
       lib: files: [
         expand: true
-        cwd: 'lib/'
-        src: ['**/*.js']
-        dest: 'build/lib'
+        src: ['lib/**/*.js']
+        dest: 'build/'
       ]
   )
 	
@@ -33,6 +42,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-browser-dependencies');
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-json');
 
   # Default task(s).
-  grunt.registerTask 'default', ['browserDependencies', 'coffee', 'copy']
+  grunt.registerTask 'default', ['browserDependencies', 'coffee', 'json', 'copy']

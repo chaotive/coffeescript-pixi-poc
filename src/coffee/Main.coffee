@@ -10,6 +10,6 @@ class Main
     @loadSpriteSheet()
 
   loadSpriteSheet: ->
-    console.log("Loading sprie sheet")
+    console.log("Loading sprie sheet: " + coffee.SCROLL_SPEED)
 
 main = new Main()
