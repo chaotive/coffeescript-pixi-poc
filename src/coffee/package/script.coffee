@@ -1,2 +1,0 @@
-whatever = true
-forever = "never"
