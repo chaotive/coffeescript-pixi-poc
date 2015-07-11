@@ -4,7 +4,7 @@ module.exports = (grunt) ->
   grunt.initConfig(
     # Metadata	
     pkg: grunt.file.readJSON('package.json')
-    browserDependencies: grunt.file.readJSON('browserDependencies.json')
+    browserDependencies: grunt.file.readJSON('project/browserDependencies.json')
     coffee:
       compileJoined:
         options:
