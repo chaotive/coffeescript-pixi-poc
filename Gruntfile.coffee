@@ -8,6 +8,7 @@ module.exports = (grunt) ->
     coffee:
       compileJoined:
         options:
+          bare: true
           join: true
         files:          
           'build/js/<%= pkg.name %>.js': [

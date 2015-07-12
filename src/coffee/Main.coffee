@@ -12,4 +12,4 @@ class Main
   loadSpriteSheet: ->
     console.log("Loading sprie sheet: " + props.game.SCROLL_SPEED)
 
-main = new Main()
+#main = new Main()
