@@ -15,13 +15,12 @@ module.exports = (grunt) ->
             # 'src/coffee/package/*.coffee'
           ] # concat then compile into single file
     json:
-      settings:
+      props:
         options:
-          namespace: 'myjson'
-          processName: (filename) ->
-            filename.toLowerCase()
+          namespace: 'props'
+          processName: (filename) -> filename
         src: ['src/*.json']
-        dest: 'build/settings.js'
+        dest: 'build/props.js'
     copy:
       statics: files:
           'build/index.html' : ['src/index.html']
