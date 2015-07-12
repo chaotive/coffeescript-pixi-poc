@@ -31,6 +31,12 @@ module.exports = (grunt) ->
           src: ['html/**/*.html']
           dest: 'build/'
         ]
+      resources: files: [
+          expand: true
+          cwd: 'src/'
+          src: ['resources/**']
+          dest: 'build/'
+        ]
       lib: files: [
         expand: true
         src: ['lib/**/*.js']
