@@ -2,5 +2,8 @@
   "SCROLL_SPEED": 5,
   "Far": {
     "DELTA_X": 0.128
+  },
+  "Mid": {
+    "DELTA_X": 0.64
   }
 }
