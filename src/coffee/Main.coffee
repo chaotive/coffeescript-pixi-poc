@@ -27,7 +27,7 @@ class Main
 
   borrowWallSprites: (num) ->
     f(x) for x in [0...num]
-    f: (i) ->
+    f = (i) ->
       if (i % 2 == 0) sprite = @pool.borrowWindow()
       else sprite = @pool.borrowDecoration()
       sprite.position.x = -32 + (i * 64)
@@ -38,7 +38,7 @@ class Main
 
   returnWallSprites: ->
     f(x) for x in [0...@wallSlices.length]
-    f: (i) ->
+    f = (i) ->
         sprite = @wallSlices[i]
         @stage.removeChild(sprite)
         if (i % 2 == 0) @pool.returnWindow(sprite)

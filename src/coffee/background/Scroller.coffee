@@ -18,4 +18,4 @@ class Scroller
 
   moveViewportXBy: (units) ->
     newViewportX = @viewportX + units;
-    this.setViewportX(newViewportX);
+    @setViewportX(newViewportX);
