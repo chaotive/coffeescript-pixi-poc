@@ -7,13 +7,10 @@ module.exports = (grunt) ->
     browserDependencies: grunt.file.readJSON('project/browserDependencies.json')
     coffee:
       compileJoined:
-        options:
-          bare: true
-          join: true
+        options: bare: true, join: true
         files:          
           'build/js/<%= pkg.name %>.js': [
             'src/coffee/**/*.coffee'
-            # 'src/coffee/package/*.coffee'
           ] # concat then compile into single file
     json:
       props:
@@ -42,6 +39,15 @@ module.exports = (grunt) ->
         src: ['lib/**/*.js']
         dest: 'build/'
       ]
+    watch:
+      configFiles: files: ['Gruntfile.coffee'], options: reload: true
+      coffee: files: ['src/**/*.coffee'], tasks: ['coffee']
+      json: files: ['src/**/*.json'], tasks: ['json']
+      copy:
+        files: ['src/**/*.html','src/resources/**/*']
+        tasks: ['copy']
+    clean: ["build"]
+    jshint: js: ["build/js/**/*.js"]
   )
 	
   # Load the plugins
@@ -49,6 +55,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-json');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   # Default task(s).
-  grunt.registerTask 'default', ['browserDependencies', 'coffee', 'json', 'copy']
+  grunt.registerTask 'default', ['clean', 'browserDependencies', 'coffee', 'json', 'copy']
