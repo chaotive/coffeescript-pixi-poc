@@ -1,6 +1,6 @@
 class Main
   constructor: ->
-    console.log("Main running... chupalo sergio")
+    console.log("Main running... ")
     @stage = new PIXI.Stage(0x66FF99)
     @renderer = PIXI.autoDetectRenderer(
       512
