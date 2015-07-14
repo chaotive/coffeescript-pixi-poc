@@ -44,4 +44,4 @@ class Main
         if (i % 2 == 0) @pool.returnWindow(sprite)
         else @pool.returnDecoration(sprite)
 
-    @wallSlices = [];
+    @wallSlices = []

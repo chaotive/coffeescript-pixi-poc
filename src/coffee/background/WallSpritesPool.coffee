@@ -1,138 +1,117 @@
+class WallSpritesPool
+  constructor: ->
+    @createWindows()
+    @createDecorations()
+    @createFrontEdges()
+    @createBackEdges()
+    @createSteps()
+
+  createDecorations: ->
+    @decorations = [];
+    @addDecorationSprites(6, "decoration_01")
+    @addDecorationSprites(6, "decoration_02")
+    @addDecorationSprites(6, "decoration_03")
+    @shuffle(@decorations)
+
+  createFrontEdges: ->
+    @frontEdges = []
+    @addFrontEdgeSprites(2, "edge_01")
+    @addFrontEdgeSprites(2, "edge_02")
+    @shuffle(@frontEdges)
+
+  createBackEdges: ->
+    @backEdges = []
+    @addBackEdgeSprites(2, "edge_01")
+    @addBackEdgeSprites(2, "edge_02")
+    @shuffle(@backEdges)
+
+  createSteps: ->
+    @steps = [];
+    @addStepSprites(2, "step_01");
+
+  borrowWindow: ->
+    @windows.shift()
+
+  returnWindow: (sprite) ->
+    @windows.push(sprite)
+
+  borrowDecoration: ->
+    @decorations.shift()
+
+  returnDecoration: (sprite) ->
+    @decorations.push(sprite)
+
+  borrowFrontEdge: ->
+    @frontEdges.shift()
+
+  returnFrontEdge: (sprite) ->
+    @frontEdges.push(sprite)
+
+  borrowBackEdge: ->
+    @backEdges.shift()
+
+  returnBackEdge: (sprite) ->
+    @backEdges.push(sprite)
+
+  borrowStep: ->
+    @steps.shift()
+
+  returnStep: (sprite) ->
+    @steps.push(sprite)
+
+  createWindows: ->
+    @windows = []
+    @addWindowSprites(6, "window_01")
+    @addWindowSprites(6, "window_02")
+    @shuffle(@windows)
+
+
 `
-    function WallSpritesPool() {
-        this.createWindows();
-        this.createDecorations();
-        this.createFrontEdges();
-        this.createBackEdges();
-        this.createSteps();
-    }
 
-    WallSpritesPool.prototype.createDecorations = function() {
-        this.decorations = [];
-
-        this.addDecorationSprites(6, "decoration_01");
-        this.addDecorationSprites(6, "decoration_02");
-        this.addDecorationSprites(6, "decoration_03");
-
-        this.shuffle(this.decorations);
-    };
-
-    WallSpritesPool.prototype.createFrontEdges = function() {
-        this.frontEdges = [];
-
-        this.addFrontEdgeSprites(2, "edge_01");
-        this.addFrontEdgeSprites(2, "edge_02");
-
-        this.shuffle(this.frontEdges);
-    };
-
-    WallSpritesPool.prototype.createBackEdges = function() {
-        this.backEdges = [];
-
-        this.addBackEdgeSprites(2, "edge_01");
-        this.addBackEdgeSprites(2, "edge_02");
-
-        this.shuffle(this.backEdges);
-    };
-
-    WallSpritesPool.prototype.createSteps = function() {
-        this.steps = [];
-        this.addStepSprites(2, "step_01");
-    };
-
-    WallSpritesPool.prototype.borrowWindow = function() {
-        return this.windows.shift();
-    };
-
-    WallSpritesPool.prototype.returnWindow = function(sprite) {
-        this.windows.push(sprite);
-    };
-
-    WallSpritesPool.prototype.borrowDecoration = function() {
-        return this.decorations.shift();
-    };
-
-    WallSpritesPool.prototype.returnDecoration = function(sprite) {
-        this.decorations.push(sprite);
-    };
-
-    WallSpritesPool.prototype.borrowFrontEdge = function() {
-        return this.frontEdges.shift();
-    };
-
-    WallSpritesPool.prototype.returnFrontEdge = function(sprite) {
-        this.frontEdges.push(sprite);
-    };
-
-    WallSpritesPool.prototype.borrowBackEdge = function() {
-        return this.backEdges.shift();
-    };
-
-    WallSpritesPool.prototype.returnBackEdge = function(sprite) {
-        this.backEdges.push(sprite);
-    };
-
-    WallSpritesPool.prototype.borrowStep = function() {
-        return this.steps.shift();
-    };
-
-    WallSpritesPool.prototype.returnStep = function(sprite) {
-        this.steps.push(sprite);
-    };
-
-    WallSpritesPool.prototype.createWindows = function() {
-        this.windows = [];
-
-        this.addWindowSprites(6, "window_01");
-        this.addWindowSprites(6, "window_02");
-
-        this.shuffle(this.windows);
-    };
-
-    WallSpritesPool.prototype.addWindowSprites = function(amount, frameId) {
+    addWindowSprites = function(amount, frameId) {
         for (var i = 0; i < amount; i++)
         {
             var sprite = PIXI.Sprite.fromFrame(frameId);
-            this.windows.push(sprite);
+            @windows.push(sprite);
         }
-    };
 
-    WallSpritesPool.prototype.addDecorationSprites = function(amount, frameId) {
+
+    addDecorationSprites = function(amount, frameId) {
         for (var i = 0; i < amount; i++)
         {
             var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
-            this.decorations.push(sprite);
+            @decorations.push(sprite);
         }
-    };
 
-    WallSpritesPool.prototype.addFrontEdgeSprites = function(amount, frameId) {
+
+    addFrontEdgeSprites = function(amount, frameId) {
         for (var i = 0; i < amount; i++)
         {
             var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
-            this.frontEdges.push(sprite);
+            @frontEdges.push(sprite);
         }
-    };
 
-    WallSpritesPool.prototype.addBackEdgeSprites = function(amount, frameId) {
+
+    addBackEdgeSprites = function(amount, frameId) {
         for (var i = 0; i < amount; i++)
         {
             var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
             sprite.anchor.x = 1;
             sprite.scale.x = -1;
-            this.backEdges.push(sprite);
+            @backEdges.push(sprite);
         }
-    };
 
-    WallSpritesPool.prototype.addStepSprites = function(amount, frameId) {
+
+    addStepSprites = function(amount, frameId) {
         for (var i = 0; i < amount; i++)
         {
             var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
             sprite.anchor.y = 0.25;
-            this.steps.push(sprite);
+            @steps.push(sprite);
         }
-    };
 
-    WallSpritesPool.prototype.shuffle = function(array) {
+
+    shuffle = function(array) {
         var len = array.length;
         var shuffles = len * 3;
         for (var i = 0; i < shuffles; i++)
@@ -141,5 +120,5 @@
             var pos = Math.floor(Math.random() * (len-1));
             array.splice(pos, 0, wallSlice);
         }
-    };
+
 `
