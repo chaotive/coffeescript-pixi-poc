@@ -1,6 +1,6 @@
 class Main
   constructor: ->
-    console.log("Main running... sajsajkdsapñkljdsalñdasp ")
+    console.log("Main running...")
     @stage = new PIXI.Stage(0x66FF99)
     @renderer = PIXI.autoDetectRenderer(
       512
@@ -8,7 +8,6 @@ class Main
       {view:document.getElementById("game-canvas")}
     )
     @loadSpriteSheet()
-    console.log("sorryh wn")
 
   update: ->
     @scroller.moveViewportXBy(props.game.SCROLL_SPEED)
