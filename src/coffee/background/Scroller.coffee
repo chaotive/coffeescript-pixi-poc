@@ -17,5 +17,5 @@ class Scroller
     @viewportX
 
   moveViewportXBy: (units) ->
-    newViewportX = @viewportX + units;
-    @setViewportX(newViewportX);
+    newViewportX = @viewportX + units
+    @setViewportX(newViewportX)

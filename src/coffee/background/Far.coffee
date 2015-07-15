@@ -13,4 +13,3 @@ class Far extends PIXI.TilingSprite
     distanceTravelled = newViewportX - @viewportX
     @viewportX = newViewportX;
     @tilePosition.x -= (distanceTravelled * props.game.Far.DELTA_X);
-    console.log("cambio piola")
