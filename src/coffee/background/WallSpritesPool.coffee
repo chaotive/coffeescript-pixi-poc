@@ -65,60 +65,44 @@ class WallSpritesPool
     @addWindowSprites(6, "window_02")
     @shuffle(@windows)
 
+  addWindowSprites: (amount, frameId) ->
+    f(i) for i in [0...amount]
+    f = (i) ->
+      sprite = PIXI.Sprite.fromFrame(frameId)
+      @windows.push(sprite)
 
-`
+  addDecorationSprites: (amount, frameId) ->
+    f(i) for i in [0...amount]
+    f = (i) ->
+      sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
+      @decorations.push(sprite)
 
-    addWindowSprites = function(amount, frameId) {
-        for (var i = 0; i < amount; i++)
-        {
-            var sprite = PIXI.Sprite.fromFrame(frameId);
-            @windows.push(sprite);
-        }
+  addFrontEdgeSprites: (amount, frameId) ->
+    f(i) for i in [0...amount]
+    f = (i) ->
+      sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
+      @frontEdges.push(sprite)
 
+  addBackEdgeSprites: (amount, frameId) ->
+    f(i) for i in [0...amount]
+    f = (i) ->
+      sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
+      sprite.anchor.x = 1
+      sprite.scale.x = -1
+      @backEdges.push(sprite)
 
-    addDecorationSprites = function(amount, frameId) {
-        for (var i = 0; i < amount; i++)
-        {
-            var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
-            @decorations.push(sprite);
-        }
+  addStepSprites: (amount, frameId) ->
+    f(i) for i in [0...amount]
+    f = (i) ->
+      sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
+      sprite.anchor.y = 0.25
+      @steps.push(sprite)
 
-
-    addFrontEdgeSprites = function(amount, frameId) {
-        for (var i = 0; i < amount; i++)
-        {
-            var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
-            @frontEdges.push(sprite);
-        }
-
-
-    addBackEdgeSprites = function(amount, frameId) {
-        for (var i = 0; i < amount; i++)
-        {
-            var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
-            sprite.anchor.x = 1;
-            sprite.scale.x = -1;
-            @backEdges.push(sprite);
-        }
-
-
-    addStepSprites = function(amount, frameId) {
-        for (var i = 0; i < amount; i++)
-        {
-            var sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId));
-            sprite.anchor.y = 0.25;
-            @steps.push(sprite);
-        }
-
-
-    shuffle = function(array) {
-        var len = array.length;
-        var shuffles = len * 3;
-        for (var i = 0; i < shuffles; i++)
-        {
-            var wallSlice = array.pop();
-            var pos = Math.floor(Math.random() * (len-1));
-            array.splice(pos, 0, wallSlice);
-        }
-
-`
+  shuffle: (array) ->
+    len = array.length
+    shuffles = len * 3
+    f(i) for i in [0...shuffles]
+    f = (i) ->
+      wallSlice = array.pop()
+      pos = Math.floor(Math.random() * (len-1))
+      array.splice(pos, 0, wallSlice)

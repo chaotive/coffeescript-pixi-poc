@@ -1,7 +1,7 @@
 class Far extends PIXI.TilingSprite
   constructor: ->
     texture = PIXI.Texture.fromImage("resources/bg-far.png")
-    PIXI.TilingSprite.call(this, texture, 512, 256);
+    super(texture, 512, 256);
 
     @position.x = 0;
     @position.y = 0;
