@@ -30,6 +30,7 @@ class WallSpritesPool
     @addStepSprites(2, "step_01");
 
   borrowWindow: ->
+    console.log("borrowWindow " + @windows.length)
     @windows.shift()
 
   returnWindow: (sprite) ->
@@ -66,7 +67,9 @@ class WallSpritesPool
     @shuffle(@windows)
 
   addWindowSprites: (amount, frameId) ->
+    console.log("Beginning addWindowsprites")
     ((i) ->
+      console.log("Adding 1 window...")
       sprite = PIXI.Sprite.fromFrame(frameId)
       @windows.push(sprite)
     ) for i in [0...amount]

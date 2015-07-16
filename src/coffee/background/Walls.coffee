@@ -4,7 +4,8 @@ class Walls extends PIXI.DisplayObjectContainer
     @pool = new WallSpritesPool()
     @createLookupTables()
     sprite = @borrowWallSprite(SliceType.WINDOW)
-    #@addChild(sprite)
+    console.log(sprite)
+    @addChild(sprite)
 
   createLookupTables: ->
     @borrowWallSpriteLookup = []
@@ -21,7 +22,10 @@ class Walls extends PIXI.DisplayObjectContainer
     @returnWallSpriteLookup[SliceType.DECORATION] = @pool.returnDecoration
     @returnWallSpriteLookup[SliceType.WINDOW] = @pool.returnWindow
 
+    return
+
   borrowWallSprite: (sliceType) ->
+    console.log(sliceType)
     @borrowWallSpriteLookup[sliceType].call(@pool)
 
   returnWallSprite: (sliceType, sliceSprite) ->

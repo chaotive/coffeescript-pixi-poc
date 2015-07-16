@@ -1,7 +1,7 @@
-SliceType = ->
-  SliceType.FRONT      = 0
-  SliceType.BACK       = 1
-  SliceType.STEP       = 2
-  SliceType.DECORATION = 3
-  SliceType.WINDOW     = 4
-  SliceType.GAP        = 5
+class SliceType
+  @FRONT      = 0
+  @BACK       = 1
+  @STEP       = 2
+  @DECORATION = 3
+  @WINDOW     = 4
+  @GAP        = 5
