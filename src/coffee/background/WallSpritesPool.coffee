@@ -30,7 +30,6 @@ class WallSpritesPool
     @addStepSprites(2, "step_01");
 
   borrowWindow: ->
-    console.log("borrowWindow " + @windows.length)
     @windows.shift()
 
   returnWindow: (sprite) ->
@@ -67,45 +66,37 @@ class WallSpritesPool
     @shuffle(@windows)
 
   addWindowSprites: (amount, frameId) ->
-    console.log("Beginning addWindowsprites")
-    ((i) ->
-      console.log("Adding 1 window...")
+    for i in [0...amount]
       sprite = PIXI.Sprite.fromFrame(frameId)
       @windows.push(sprite)
-    ) for i in [0...amount]
 
   addDecorationSprites: (amount, frameId) ->
-    ((i) ->
+    for i in [0...amount]
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       @decorations.push(sprite)
-    ) for i in [0...amount]
 
   addFrontEdgeSprites: (amount, frameId) ->
-    ((i) ->
+    for i in [0...amount]
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       @frontEdges.push(sprite)
-    ) for i in [0...amount]
 
   addBackEdgeSprites: (amount, frameId) ->
-    ((i) ->
+    for i in [0...amount]
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       sprite.anchor.x = 1
       sprite.scale.x = -1
       @backEdges.push(sprite)
-    ) for i in [0...amount]
 
   addStepSprites: (amount, frameId) ->
-    ((i) ->
+    for i in [0...amount]
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       sprite.anchor.y = 0.25
       @steps.push(sprite)
-    ) for i in [0...amount]
 
   shuffle: (array) ->
     len = array.length
     shuffles = len * 3
-    ((i) ->
+    for i in [0...shuffles]
       wallSlice = array.pop()
       pos = Math.floor(Math.random() * (len-1))
       array.splice(pos, 0, wallSlice)
-    ) for i in [0...shuffles]
