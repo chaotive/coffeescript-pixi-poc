@@ -6,6 +6,9 @@ class Scroller
     @mid = new Mid()
     stage.addChild(@mid)
 
+    @front = new Walls()
+    stage.addChild(@front)
+
     @viewportX = 0
 
   setViewportX: (viewportX) ->

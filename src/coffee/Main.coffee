@@ -26,8 +26,7 @@ class Main
     requestAnimFrame(@update.bind(this));
 
   borrowWallSprites: (num) ->
-    f(x) for x in [0...num]
-    f = (i) ->
+    ((i) ->
       if (i % 2 == 0) sprite = @pool.borrowWindow()
       else sprite = @pool.borrowDecoration()
       sprite.position.x = -32 + (i * 64)
@@ -35,13 +34,14 @@ class Main
 
       @wallSlices.push(sprite)
       @stage.addChild(sprite)
+    ) for x in [0...num]
 
   returnWallSprites: ->
-    f(x) for x in [0...@wallSlices.length]
-    f = (i) ->
-        sprite = @wallSlices[i]
-        @stage.removeChild(sprite)
-        if (i % 2 == 0) @pool.returnWindow(sprite)
-        else @pool.returnDecoration(sprite)
+    ((i) ->
+      sprite = @wallSlices[i]
+      @stage.removeChild(sprite)
+      if (i % 2 == 0) @pool.returnWindow(sprite)
+      else @pool.returnDecoration(sprite)
+    ) for x in [0...@wallSlices.length]
 
     @wallSlices = []

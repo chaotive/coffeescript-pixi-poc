@@ -66,43 +66,43 @@ class WallSpritesPool
     @shuffle(@windows)
 
   addWindowSprites: (amount, frameId) ->
-    f(i) for i in [0...amount]
-    f = (i) ->
+    ((i) ->
       sprite = PIXI.Sprite.fromFrame(frameId)
       @windows.push(sprite)
+    ) for i in [0...amount]
 
   addDecorationSprites: (amount, frameId) ->
-    f(i) for i in [0...amount]
-    f = (i) ->
+    ((i) ->
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       @decorations.push(sprite)
+    ) for i in [0...amount]
 
   addFrontEdgeSprites: (amount, frameId) ->
-    f(i) for i in [0...amount]
-    f = (i) ->
+    ((i) ->
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       @frontEdges.push(sprite)
+    ) for i in [0...amount]
 
   addBackEdgeSprites: (amount, frameId) ->
-    f(i) for i in [0...amount]
-    f = (i) ->
+    ((i) ->
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       sprite.anchor.x = 1
       sprite.scale.x = -1
       @backEdges.push(sprite)
+    ) for i in [0...amount]
 
   addStepSprites: (amount, frameId) ->
-    f(i) for i in [0...amount]
-    f = (i) ->
+    ((i) ->
       sprite = new PIXI.Sprite(PIXI.Texture.fromFrame(frameId))
       sprite.anchor.y = 0.25
       @steps.push(sprite)
+    ) for i in [0...amount]
 
   shuffle: (array) ->
     len = array.length
     shuffles = len * 3
-    f(i) for i in [0...shuffles]
-    f = (i) ->
+    ((i) ->
       wallSlice = array.pop()
       pos = Math.floor(Math.random() * (len-1))
       array.splice(pos, 0, wallSlice)
+    ) for i in [0...shuffles]
