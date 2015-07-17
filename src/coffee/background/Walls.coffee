@@ -7,7 +7,6 @@ class Walls extends PIXI.DisplayObjectContainer
     @pool = new WallSpritesPool()
     @createLookupTables()
     @slices = []
-    @createTestMap()
     @viewportX = 0
     @viewportSliceX = 0
 
@@ -71,36 +70,8 @@ class Walls extends PIXI.DisplayObjectContainer
 
   checkViewportXBounds: (viewportX) ->
     maxViewportX = (@slices.length - Walls.VIEWPORT_NUM_SLICES) * WallSlice.WIDTH
-    if (viewportX < 0) viewportX = 0
+    if (viewportX < 0)
+      viewportX = 0
     else if (viewportX > maxViewportX)
       viewportX = maxViewportX
     viewportX
-
-  createTestWallSpan: () ->
-    @addSlice(SliceType.FRONT, 192)
-    @addSlice(SliceType.WINDOW, 192)
-    @addSlice(SliceType.DECORATION, 192)
-    @addSlice(SliceType.WINDOW, 192)
-    @addSlice(SliceType.DECORATION, 192)
-    @addSlice(SliceType.WINDOW, 192)
-    @addSlice(SliceType.DECORATION, 192)
-    @addSlice(SliceType.WINDOW, 192)
-    @addSlice(SliceType.BACK, 192)
-
-  createTestSteppedWallSpan: () ->
-    @addSlice(SliceType.FRONT, 192)
-    @addSlice(SliceType.WINDOW, 192)
-    @addSlice(SliceType.DECORATION, 192)
-    @addSlice(SliceType.STEP, 256)
-    @addSlice(SliceType.WINDOW, 256)
-    @addSlice(SliceType.BACK, 256)
-
-  createTestGap: () ->
-    @addSlice(SliceType.GAP);
-
-  createTestMap: () ->
-    for i in [0...10]
-      @createTestWallSpan()
-      @createTestGap()
-      @createTestSteppedWallSpan()
-      @createTestGap()
