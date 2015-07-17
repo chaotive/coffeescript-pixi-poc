@@ -3,8 +3,15 @@ class Walls extends PIXI.DisplayObjectContainer
     super()
     @pool = new WallSpritesPool()
     @createLookupTables()
+
+    console.log("Before borrowing window: " + @pool.windows.length)
     sprite = @borrowWallSprite(SliceType.WINDOW)
     @addChild(sprite)
+    console.log("After borrowing window: " + @pool.windows.length)
+
+    @removeChild(sprite);
+    @returnWallSprite(SliceType.WINDOW, sprite);
+    console.log("After returning window: " + @pool.windows.length);
 
   createLookupTables: ->
     @borrowWallSpriteLookup = []
