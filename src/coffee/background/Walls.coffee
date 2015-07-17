@@ -15,7 +15,20 @@ class Walls extends PIXI.DisplayObjectContainer
     @viewportX = @checkViewportXBounds(viewportX)
     prevViewportSliceX = @viewportSliceX
     @viewportSliceX = Math.floor(@viewportX/WallSlice.WIDTH)
+
+    @removeOldSlices(prevViewportSliceX)
     @addNewSlices()
+
+  removeOldSlices: (prevViewportSliceX) ->
+    numOldSlices = @viewportSliceX - prevViewportSliceX;
+    if (numOldSlices > Walls.VIEWPORT_NUM_SLICES)
+      numOldSlices = Walls.VIEWPORT_NUM_SLICES
+    for i in [prevViewportSliceX...(prevViewportSliceX + numOldSlices)]
+      slice = @slices[i]
+      if (slice.sprite != null)
+        @returnWallSprite(slice.type, slice.sprite)
+        @removeChild(slice.sprite)
+        slice.sprite = null
 
   addNewSlices: () ->
     firstX = -(@viewportX % WallSlice.WIDTH)
