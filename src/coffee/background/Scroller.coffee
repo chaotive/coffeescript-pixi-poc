@@ -15,6 +15,7 @@ class Scroller
     @viewportX = viewportX
     @far.setViewportX(viewportX)
     @mid.setViewportX(viewportX)
+    @front.setViewportX(viewportX)
 
   getViewportX: ->
     @viewportX

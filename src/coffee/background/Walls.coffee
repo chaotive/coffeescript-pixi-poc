@@ -1,10 +1,17 @@
 class Walls extends PIXI.DisplayObjectContainer
+  @VIEWPORT_WIDTH = 512
+  @VIEWPORT_NUM_SLICES = Math.ceil(Walls.VIEWPORT_WIDTH/WallSlice.WIDTH) + 1
+
   constructor: ->
     super()
     @pool = new WallSpritesPool()
     @createLookupTables()
     @slices = []
     @createTestMap()
+    @viewportX = 0
+    @viewportSliceX = 0
+
+  setViewportX: (viewportX) ->
 
   createLookupTables: ->
     @borrowWallSpriteLookup = []
