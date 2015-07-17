@@ -4,4 +4,5 @@
 
 This is a Proof of Concept project to use Pixi.js functionality from Coffeescript code. 
 
-The project should be built using Grunt and Pixi functionality is the same as project done in https://github.com/chaotive/pixi-tutorial.
+The project should be built using Grunt. Functionality is the same as the javascript Pixi implementation described on this excellent tutorial by Christopher Caleb:
+http://www.yeahbutisitflash.com/?p=5226
