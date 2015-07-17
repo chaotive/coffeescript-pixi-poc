@@ -56,26 +56,19 @@ class MapBuilder
   createWallSpan: (
     heightIndex, spanLength, noFront = false, noBack = false) ->
 
-    if (noFront == false && spanLength > 0)
+    if noFront == false && spanLength > 0
       @addWallFront(heightIndex)
       spanLength--
 
-    if (noBack == true)
-      temp = 0
-    else
-      temp = 1
-
-    midSpanLength = spanLength - temp
-    if (midSpanLength > 0)
+    midSpanLength = spanLength - (if noBack == true then 0 else 1)
+    if midSpanLength > 0
       @addWallMid(heightIndex, midSpanLength)
       spanLength -= midSpanLength
 
-    if (noBack == false && spanLength > 0)
-      @addWallBack(heightIndex)
+    if noBack == false && spanLength > 0 then @addWallBack(heightIndex)
 
   createSteppedWallSpan: (heightIndex, spanALength, spanBLength) ->
-    if (heightIndex < 2)
-      heightIndex = 2
+    if heightIndex < 2 then heightIndex = 2
     @createWallSpan(heightIndex, spanALength, false, true)
     @addWallStep(heightIndex - 2)
     @createWallSpan(heightIndex - 2, spanBLength - 1, true, false)
@@ -91,10 +84,8 @@ class MapBuilder
   addWallMid: (heightIndex, spanLength) ->
     y = MapBuilder.WALL_HEIGHTS[heightIndex]
     for i in [0...spanLength]
-      if (i % 2 == 0)
-        @walls.addSlice(SliceType.WINDOW, y)
-      else
-        @walls.addSlice(SliceType.DECORATION, y)
+      if (i % 2 == 0) then @walls.addSlice(SliceType.WINDOW, y)
+      else @walls.addSlice(SliceType.DECORATION, y)
 
   addWallStep: (heightIndex) ->
     y = MapBuilder.WALL_HEIGHTS[heightIndex]
