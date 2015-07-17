@@ -1,4 +1,8 @@
 class Main
+  @MIN_SCROLL_SPEED = 5
+  @MAX_SCROLL_SPEED = 15
+  @SCROLL_ACCELERATION = 0.005
+
   constructor: ->
     console.log("Main running...")
     @stage = new PIXI.Stage(0x66FF99)
@@ -7,10 +11,15 @@ class Main
       384
       {view:document.getElementById("game-canvas")}
     )
+    @scrollSpeed = Main.MIN_SCROLL_SPEED
     @loadSpriteSheet()
 
   update: ->
-    @scroller.moveViewportXBy(props.game.SCROLL_SPEED)
+    @scroller.moveViewportXBy(@scrollSpeed)
+    @scrollSpeed += Main.SCROLL_ACCELERATION
+    if (@scrollSpeed > Main.MAX_SCROLL_SPEED)
+      @scrollSpeed = Main.MAX_SCROLL_SPEED
+
     @renderer.render(@stage)
     requestAnimFrame(@update.bind(this));
 

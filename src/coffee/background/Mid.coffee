@@ -1,4 +1,6 @@
 class Mid extends PIXI.TilingSprite
+  @DELTA_X = 0.064
+
   constructor: ->
     texture = PIXI.Texture.fromImage("resources/bg-mid.png");
     super(texture, 512, 256);
@@ -13,4 +15,4 @@ class Mid extends PIXI.TilingSprite
   setViewportX: (newViewportX) ->
     distanceTravelled = newViewportX - @viewportX;
     @viewportX = newViewportX;
-    @tilePosition.x -= (distanceTravelled * props.game.Mid.DELTA_X)
+    @tilePosition.x -= (distanceTravelled * Mid.DELTA_X)

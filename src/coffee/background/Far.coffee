@@ -1,4 +1,6 @@
 class Far extends PIXI.TilingSprite
+  @DELTA_X = 0.32
+
   constructor: ->
     texture = PIXI.Texture.fromImage("resources/bg-far.png")
     super(texture, 512, 256);
@@ -12,4 +14,4 @@ class Far extends PIXI.TilingSprite
   setViewportX: (newViewportX) ->
     distanceTravelled = newViewportX - @viewportX
     @viewportX = newViewportX;
-    @tilePosition.x -= (distanceTravelled * props.game.Far.DELTA_X);
+    @tilePosition.x -= (distanceTravelled * Far.DELTA_X);
