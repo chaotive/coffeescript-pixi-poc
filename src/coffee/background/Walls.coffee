@@ -3,15 +3,8 @@ class Walls extends PIXI.DisplayObjectContainer
     super()
     @pool = new WallSpritesPool()
     @createLookupTables()
-
-    console.log("Before borrowing window: " + @pool.windows.length)
-    sprite = @borrowWallSprite(SliceType.WINDOW)
-    @addChild(sprite)
-    console.log("After borrowing window: " + @pool.windows.length)
-
-    @removeChild(sprite);
-    @returnWallSprite(SliceType.WINDOW, sprite);
-    console.log("After returning window: " + @pool.windows.length);
+    @slices = []
+    @createTestMap()
 
   createLookupTables: ->
     @borrowWallSpriteLookup = []
@@ -33,3 +26,36 @@ class Walls extends PIXI.DisplayObjectContainer
 
   returnWallSprite: (sliceType, sliceSprite) ->
     @returnWallSpriteLookup[sliceType].call(@pool, sliceSprite)
+
+  addSlice: (sliceType, y) ->
+    slice = new WallSlice(sliceType, y)
+    @slices.push slice
+
+  createTestWallSpan: () ->
+    @addSlice(SliceType.FRONT, 192)
+    @addSlice(SliceType.WINDOW, 192)
+    @addSlice(SliceType.DECORATION, 192)
+    @addSlice(SliceType.WINDOW, 192)
+    @addSlice(SliceType.DECORATION, 192)
+    @addSlice(SliceType.WINDOW, 192)
+    @addSlice(SliceType.DECORATION, 192)
+    @addSlice(SliceType.WINDOW, 192)
+    @addSlice(SliceType.BACK, 192)
+
+  createTestSteppedWallSpan: () ->
+    @addSlice(SliceType.FRONT, 192)
+    @addSlice(SliceType.WINDOW, 192)
+    @addSlice(SliceType.DECORATION, 192)
+    @addSlice(SliceType.STEP, 256)
+    @addSlice(SliceType.WINDOW, 256)
+    @addSlice(SliceType.BACK, 256)
+
+  createTestGap: () ->
+    @addSlice(SliceType.GAP);
+
+  createTestMap: () ->
+    for i in [0...10]
+      @createTestWallSpan()
+      @createTestGap()
+      @createTestSteppedWallSpan()
+      @createTestGap()
