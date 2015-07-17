@@ -9,6 +9,8 @@ class Scroller
     @front = new Walls()
     stage.addChild(@front)
 
+    @mapBuilder = new MapBuilder(@front)
+
     @viewportX = 0
 
   setViewportX: (viewportX) ->

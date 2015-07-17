@@ -71,8 +71,7 @@ class Walls extends PIXI.DisplayObjectContainer
 
   checkViewportXBounds: (viewportX) ->
     maxViewportX = (@slices.length - Walls.VIEWPORT_NUM_SLICES) * WallSlice.WIDTH
-    if (viewportX < 0)
-      viewportX = 0
+    if (viewportX < 0) viewportX = 0
     else if (viewportX > maxViewportX)
       viewportX = maxViewportX
     viewportX
