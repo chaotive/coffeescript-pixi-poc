@@ -12,6 +12,24 @@ class Walls extends PIXI.DisplayObjectContainer
     @viewportSliceX = 0
 
   setViewportX: (viewportX) ->
+    @viewportX = @checkViewportXBounds(viewportX)
+    prevViewportSliceX = @viewportSliceX
+    @viewportSliceX = Math.floor(@viewportX/WallSlice.WIDTH)
+    @addNewSlices()
+
+  addNewSlices: () ->
+    firstX = -(@viewportX % WallSlice.WIDTH)
+    sliceIndex = 0
+    for i in [@viewportSliceX...(@viewportSliceX + Walls.VIEWPORT_NUM_SLICES)]
+      slice = @slices[i]
+      if (slice.sprite == null && slice.type != SliceType.GAP)
+        slice.sprite = @borrowWallSprite(slice.type)
+        slice.sprite.position.x = firstX + (sliceIndex * WallSlice.WIDTH)
+        slice.sprite.position.y = slice.y
+        @addChild(slice.sprite)
+      else if (slice.sprite != null)
+        slice.sprite.position.x = firstX + (sliceIndex * WallSlice.WIDTH)
+      sliceIndex++
 
   createLookupTables: ->
     @borrowWallSpriteLookup = []
@@ -37,6 +55,14 @@ class Walls extends PIXI.DisplayObjectContainer
   addSlice: (sliceType, y) ->
     slice = new WallSlice(sliceType, y)
     @slices.push slice
+
+  checkViewportXBounds: (viewportX) ->
+    maxViewportX = (@slices.length - Walls.VIEWPORT_NUM_SLICES) * WallSlice.WIDTH
+    if (viewportX < 0)
+      viewportX = 0
+    else if (viewportX > maxViewportX)
+      viewportX = maxViewportX
+    viewportX
 
   createTestWallSpan: () ->
     @addSlice(SliceType.FRONT, 192)
