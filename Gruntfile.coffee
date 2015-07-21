@@ -49,7 +49,7 @@ module.exports = (grunt) ->
     clean: ["build"]
     jshint: js: ["build/js/**/*.js"]
     concurrent:
-      build: ['browserDependencies', 'coffee', 'json', 'copy']
+      build: ['browserDependencies', 'coffee', 'json']
       exampleTarget2: ['jshint', 'mocha']
   )
 	
@@ -64,4 +64,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-concurrent'
 
   # Default task(s).
-  grunt.registerTask 'default', ['clean', 'concurrent:build']
+  grunt.registerTask 'default', ['clean', 'concurrent:build', 'copy']
