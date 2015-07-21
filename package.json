@@ -1,6 +1,7 @@
 {
   "name": "coffeescript-pixi-poc",
   "version": "0.1.0",
+  "author": "Leonardo Montenegro <leonardo.montenegro@chaotive.cl>",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-browser-dependencies": "^0.1.2",
